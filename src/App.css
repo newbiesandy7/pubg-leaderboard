@@ -1,38 +1,264 @@
-.App {
-  text-align: center;
+/* 🪄 IMPORT MODERN ESPORTS & GEOMETRIC TYPOGRAPHY */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+/* ==========================================================================
+   🎨 DESIGN SYSTEM VARIABLE TOKENS
+   ==========================================================================
+*/
+.dark-theme {
+  --bg-main: radial-gradient(circle at center, #111622 0%, #080a0f 100%);
+  --bg-container: rgba(13, 17, 26, 0.95);
+  --bg-row: #161f30;
+  --bg-row-hover: #1c283e;
+  --bg-header: #090d14;
+  --border-container: #1e293b;
+  --border-row: #233149;
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
+  --text-stat: #cbd5e1;
+  --bic-accent: #3b82f6;
+  --pubg-accent: #f39c12;
+  --indicator-bg: #1a2333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.light-theme {
+  --bg-main: radial-gradient(circle at center, #f4f7fa 0%, #e4eaf0 100%);
+  --bg-container: #ffffff;
+  --bg-row: #f8fafc;
+  --bg-row-hover: #f1f5f9;
+  --bg-header: #0f172a; 
+  --border-container: #cbd5e1;
+  --border-row: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-stat: #334155;
+  --bic-accent: #1d4ed8; 
+  --pubg-accent: #d97706; 
+  --indicator-bg: #e2e8f0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ==========================================================================
+   Core Layout Housing
+   ==========================================================================
+*/
+body {
+  margin: 0;
+  /* Applied Clean Modern Font as base fallback */
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
+.app-container {
+  background: var(--bg-main);
   min-height: 100vh;
+  width: 100vw;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+}
+
+.leaderboard-wrapper {
+  width: 100%;
+  max-width: 850px;
+}
+
+.leaderboard-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.leaderboard-header h1 {
+  font-family: 'Oswald', sans-serif; /* Sharp industrial title */
+  font-size: 2.7rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.dark-theme .leaderboard-header h1 {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.leaderboard-header::before {
+  content: "BOSTON INTERNATIONAL COLLEGE PRESENTS";
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--bic-accent); 
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--indicator-bg); 
+  color: var(--pubg-accent); 
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--border-row);
+  transition: all 0.3s ease;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ef4444; 
+  border-radius: 50%;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* Container Structure */
+.table-container {
+  background: var(--bg-container); 
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--border-container); 
+  transition: all 0.3s ease;
+}
+
+.dark-theme .table-container {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 80px 2fr 90px 90px 100px 100px 100px;
+  align-items: center;
+  padding: 14px 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.table-header-row {
+  background: var(--bg-header);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--bic-accent); 
+  transition: border-color 0.3s ease;
+}
+
+.table-header-row .col-rank { text-align: left; }
+.table-header-row .col-name { text-align: left; }
+.table-header-row .col-stat { text-align: center; }
+.table-header-row .col-score { text-align: right; }
+
+.rows-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
+  gap: 6px; 
 }
 
-.App-link {
-  color: #61dafb;
+.leaderboard-row {
+  background: var(--bg-row); 
+  border-radius: 4px;
+  border: 1px solid var(--border-row);
+  transition: all 0.2s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.leaderboard-row:hover {
+  background-color: var(--bg-row-hover);
+  border-color: var(--bic-accent); 
+}
+
+.col-rank { text-align: left; }
+.col-name { text-align: left; }
+.col-stat { text-align: center; }
+.col-score { text-align: right; }
+
+/* Typography Formatting */
+.header-text {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.light-theme .table-header-row .header-text {
+  color: #94a3b8; 
+}
+
+.rank-num {
+  font-family: 'Oswald', sans-serif; /* Aggressive rankings styling */
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+.team-title {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-cell {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text-stat);
+  font-size: 0.95rem;
+}
+
+.wwcd-count {
+  font-family: 'Oswald', sans-serif; /* Highlight metrics */
+  color: var(--pubg-accent) !important; 
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.final-score {
+  font-family: 'Oswald', sans-serif; /* Distinct score geometry */
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-main); 
+}
+
+/* Podium Schemes */
+.rank-1 {
+  background: linear-gradient(90deg, rgba(243, 156, 18, 0.2) 0%, var(--bg-row) 60%);
+  border: 1px solid var(--pubg-accent); 
+}
+.rank-1 .team-title { color: var(--pubg-accent); }
+.rank-1 .final-score { color: var(--pubg-accent); }
+
+.rank-2 {
+  background: linear-gradient(90deg, rgba(148, 163, 184, 0.15) 0%, var(--bg-row) 60%);
+  border: 1px solid #d97706; 
+}
+.rank-2 .team-title { color: var(--pubg-accent); }
+.rank-2 .final-score { color: var(--pubg-accent); }
+.rank-3 .final-score { color: var(--pubg-accent); }
+.rank-3 {
+  background: linear-gradient(90deg, rgba(217, 119, 6, 0.15) 0%, var(--bg-row) 60%);
+  border: 1px solid #d97706; 
+}
+.rank-3 .team-title { color: var(--pubg-accent); }
+
+.medal {
+  font-size: 1.3rem;
 }
