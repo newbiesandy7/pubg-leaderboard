@@ -1,0 +1,114 @@
+{
+  "roomId": "",
+  "password": "BIC",
+  "teams": [
+    {
+      "id": 1,
+      "name": "Hatyara gang",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 12,
+      "ELIM_POINT": 20,
+      "rank": ""
+    },
+    {
+      "id": 2,
+      "name": "The Wicked Crew",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 6,
+      "ELIM_POINT": 20,
+      "rank": ""
+    },
+    {
+      "id": 3,
+      "name": "Tanke eSports",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 5,
+      "ELIM_POINT": 13,
+      "rank": ""
+    },
+    {
+      "id": 5,
+      "name": "Nexus Alliance",
+      "WWCD": 1,
+      "MATCHES": 5,
+      "PLACEMENT": 17,
+      "ELIM_POINT": 14,
+      "rank": ""
+    },
+    {
+      "id": 6,
+      "name": "Innovators",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 8,
+      "ELIM_POINT": 17,
+      "rank": ""
+    },
+    {
+      "id": 7,
+      "name": "Pani Tyanki",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 8,
+      "ELIM_POINT": 12,
+      "rank": ""
+    },
+    {
+      "id": 8,
+      "name": "4brothers",
+      "WWCD": 3,
+      "MATCHES": 5,
+      "PLACEMENT": 38,
+      "ELIM_POINT": 49,
+      "rank": "First"
+    },
+    {
+      "id": 9,
+      "name": "Team Apex",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 14,
+      "ELIM_POINT": 28,
+      "rank": "Third"
+    },
+    {
+      "id": 10,
+      "name": "YOUNG HUSTLERS",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 1,
+      "ELIM_POINT": 1,
+      "rank": ""
+    },
+    {
+      "id": 11,
+      "name": "Genesis eSports",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 4,
+      "ELIM_POINT": 4,
+      "rank": ""
+    },
+    {
+      "id": 4,
+      "name": "A$AP",
+      "WWCD": 1,
+      "MATCHES": 5,
+      "PLACEMENT": 24,
+      "ELIM_POINT": 20,
+      "rank": "Second"
+    },
+    {
+      "id": 12,
+      "name": "Royal Gurkha Rifles",
+      "WWCD": 0,
+      "MATCHES": 5,
+      "PLACEMENT": 14,
+      "ELIM_POINT": 19,
+      "rank": ""
+    }
+  ]
+}

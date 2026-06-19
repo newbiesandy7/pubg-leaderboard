@@ -1,10 +1,8 @@
-/* 🪄 IMPORT MODERN ESPORTS & GEOMETRIC TYPOGRAPHY */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 /* ==========================================================================
-   🎨 DESIGN SYSTEM VARIABLE TOKENS
-   ==========================================================================
-*/
+   Design tokens
+   ========================================================================== */
 .dark-theme {
   --bg-main: radial-gradient(circle at center, #111622 0%, #080a0f 100%);
   --bg-container: rgba(13, 17, 26, 0.95);
@@ -26,24 +24,22 @@
   --bg-container: #ffffff;
   --bg-row: #f8fafc;
   --bg-row-hover: #f1f5f9;
-  --bg-header: #0f172a; 
+  --bg-header: #0f172a;
   --border-container: #cbd5e1;
   --border-row: #e2e8f0;
   --text-main: #0f172a;
   --text-muted: #64748b;
   --text-stat: #334155;
-  --bic-accent: #1d4ed8; 
-  --pubg-accent: #d97706; 
+  --bic-accent: #1d4ed8;
+  --pubg-accent: #d97706;
   --indicator-bg: #e2e8f0;
 }
 
 /* ==========================================================================
-   Core Layout Housing
-   ==========================================================================
-*/
+   Core layout
+   ========================================================================== */
 body {
   margin: 0;
-  /* Applied Clean Modern Font as base fallback */
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
@@ -51,32 +47,32 @@ body {
   background: var(--bg-main);
   min-height: 100vh;
   width: 100vw;
-  padding: 40px 20px;
+  padding: 30px 20px;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  transition: background 0.3s ease;
 }
 
 .leaderboard-wrapper {
-  width: 100%;
-  max-width: 850px;
+  width: 90%;
 }
 
+/* ==========================================================================
+   Header
+   ========================================================================== */
 .leaderboard-header {
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 24px;
 }
 
 .leaderboard-header h1 {
-  font-family: 'Oswald', sans-serif; /* Sharp industrial title */
-  font-size: 2.7rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2rem;
   font-weight: 900;
   letter-spacing: 2px;
   color: var(--text-main);
   margin-bottom: 8px;
   text-transform: uppercase;
-  transition: color 0.3s ease;
 }
 
 .dark-theme .leaderboard-header h1 {
@@ -87,33 +83,31 @@ body {
   content: "BOSTON INTERNATIONAL COLLEGE PRESENTS";
   display: block;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 4px;
-  color: var(--bic-accent); 
+  color: var(--bic-accent);
   margin-bottom: 6px;
-  transition: color 0.3s ease;
 }
 
 .live-indicator {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--indicator-bg); 
-  color: var(--pubg-accent); 
-  font-size: 0.9rem;
+  background-color: var(--indicator-bg);
+  color: var(--pubg-accent);
+  font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 1px;
   padding: 6px 16px;
   border-radius: 4px;
   border: 1px solid var(--border-row);
-  transition: all 0.3s ease;
 }
 
 .dot {
   width: 8px;
   height: 8px;
-  background-color: #ef4444; 
+  background-color: #ef4444;
   border-radius: 50%;
   animation: blink 1.2s infinite;
 }
@@ -124,141 +118,505 @@ body {
   100% { opacity: 0.4; }
 }
 
-/* Container Structure */
+/* ==========================================================================
+   Container & grid
+   ========================================================================== */
 .table-container {
-  background: var(--bg-container); 
+  background: var(--bg-container);
   border-radius: 6px;
   padding: 12px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-  border: 2px solid var(--border-container); 
-  transition: all 0.3s ease;
+  border: 2px solid var(--border-container);
+  position: relative;
+  overflow: hidden;
 }
 
 .dark-theme .table-container {
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: 80px 2fr 90px 90px 100px 100px 100px;
-  align-items: center;
-  padding: 14px 20px;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.table-header-row {
-  background: var(--bg-header);
-  border-radius: 4px;
-  margin-bottom: 10px;
-  border-bottom: 2px solid var(--bic-accent); 
-  transition: border-color 0.3s ease;
-}
-
-.table-header-row .col-rank { text-align: left; }
-.table-header-row .col-name { text-align: left; }
-.table-header-row .col-stat { text-align: center; }
-.table-header-row .col-score { text-align: right; }
-
-.rows-container {
+/* ==========================================================================
+   Room ID overlay
+   ========================================================================== */
+.room-id-overlay {
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  gap: 6px; 
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 40px 20px;
 }
 
+.room-id-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0f172a, #1e3a5f, #0f172a, #1a2744, #0f172a);
+  background-size: 400% 400%;
+  animation: roomBgShift 6s ease infinite;
+}
+
+.light-theme .room-id-bg {
+  background: linear-gradient(135deg, #e2e8f0, #bfdbfe, #e2e8f0, #c7d2fe, #e2e8f0);
+  background-size: 400% 400%;
+  animation: roomBgShift 6s ease infinite;
+}
+
+@keyframes roomBgShift {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+.room-id-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.room-info-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.room-id-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--bic-accent);
+}
+
+.room-id-value {
+  font-family: 'Oswald', sans-serif;
+  font-size: calc(4rem + 80px);
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: var(--text-main);
+  text-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  animation: roomPulse 2s ease-in-out infinite;
+  margin-bottom: 20px;
+  word-break: break-all;
+  text-align: center;
+  max-width: 100%;
+}
+
+
+@keyframes roomPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+/* ==========================================================================
+   Winner celebration cards
+   ========================================================================== */
+.winners-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.celebrate-card {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.celebrate-bg {
+  position: absolute;
+  inset: 0;
+  background-size: 400% 400%;
+  animation: roomBgShift 6s ease infinite;
+}
+
+.celebrate-gold .celebrate-bg {
+  background: linear-gradient(135deg, #1a1000, #3d2a00, #1a1000, #2e1f00, #1a1000);
+}
+.celebrate-silver .celebrate-bg {
+  background: linear-gradient(135deg, #0f1318, #1e2a38, #0f1318, #1a2530, #0f1318);
+}
+.celebrate-bronze .celebrate-bg {
+  background: linear-gradient(135deg, #1a0f00, #3a2010, #1a0f00, #2e1808, #1a0f00);
+}
+
+.light-theme .celebrate-gold .celebrate-bg {
+  background: linear-gradient(135deg, #fef9c3, #fde68a, #fef9c3, #fcd34d, #fef9c3);
+}
+.light-theme .celebrate-silver .celebrate-bg {
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1, #e2e8f0, #94a3b8, #e2e8f0);
+}
+.light-theme .celebrate-bronze .celebrate-bg {
+  background: linear-gradient(135deg, #fde8d0, #f5c89a, #fde8d0, #e8a96a, #fde8d0);
+}
+
+.celebrate-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.celebrate-badge {
+  font-size: 2.5rem;
+}
+
+.celebrate-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.celebrate-gold .celebrate-name { color: #ffd700; }
+.celebrate-silver .celebrate-name { color: #c0c0c0; }
+.celebrate-bronze .celebrate-name { color: #cd7f32; }
+
+.celebrate-points {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--text-main);
+}
+
+.celebrate-message {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: textGlow 1.5s ease-in-out infinite;
+}
+
+.celebrate-gold .celebrate-message {
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+.celebrate-silver .celebrate-message {
+  color: #c0c0c0;
+  text-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+}
+.celebrate-bronze .celebrate-message {
+  color: #cd7f32;
+  text-shadow: 0 0 15px rgba(205, 127, 50, 0.5);
+}
+
+
+.rows-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Card (unified for all screen sizes)
+   ========================================================================== */
 .leaderboard-row {
-  background: var(--bg-row); 
-  border-radius: 4px;
+  background: var(--bg-row);
+  border-radius: 6px;
   border: 1px solid var(--border-row);
-  transition: all 0.2s ease;
+  overflow: hidden;
+  position: relative;
+  min-height: 90px;
 }
 
 .leaderboard-row:hover {
   background-color: var(--bg-row-hover);
-  border-color: var(--bic-accent); 
+  border-color: var(--bic-accent);
 }
 
-.col-rank { text-align: left; }
-.col-name { text-align: left; }
-.col-stat { text-align: center; }
-.col-score { text-align: right; }
-
-/* Typography Formatting */
-.header-text {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 800;
-  white-space: nowrap;
+.team-card {
+  padding: 12px 14px;
 }
 
-.light-theme .table-header-row .header-text {
-  color: #94a3b8; 
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-row);
+  margin-bottom: 8px;
 }
 
-.rank-num {
-  font-family: 'Oswald', sans-serif; /* Aggressive rankings styling */
+.card-rank {
+  font-family: 'Oswald', sans-serif;
   font-weight: 700;
+  font-size: 1rem;
   color: var(--text-muted);
-  font-size: 1.15rem;
-  letter-spacing: 0.5px;
+  min-width: 28px;
 }
 
-.team-title {
+.card-name-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.card-name {
+  font-family: 'Oswald', sans-serif;
   font-weight: 700;
+  font-size: calc(0.9rem + 5px);
   color: var(--text-main);
-  font-size: 1.05rem;
-  letter-spacing: 0.3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.stat-cell {
+.card-total {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4px;
+}
+
+.card-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.card-label {
+  font-size: 0.55rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.card-value {
   font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-stat);
-  font-size: 0.95rem;
 }
-
-.wwcd-count {
-  font-family: 'Oswald', sans-serif; /* Highlight metrics */
-  color: var(--pubg-accent) !important; 
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.final-score {
-  font-family: 'Oswald', sans-serif; /* Distinct score geometry */
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--text-main); 
-}
-
-/* Podium Schemes */
-.rank-1 {
-  background: linear-gradient(90deg, rgba(243, 156, 18, 0.2) 0%, var(--bg-row) 60%);
-  border: 1px solid var(--pubg-accent); 
-}
-.rank-1 .team-title { color: var(--pubg-accent); }
-.rank-1 .final-score { color: var(--pubg-accent); }
-
-.rank-2 {
-  background: linear-gradient(90deg, rgba(148, 163, 184, 0.15) 0%, var(--bg-row) 60%);
-  border: 1px solid #d97706; 
-}
-.rank-2 .team-title { color: var(--pubg-accent); }
-.rank-2 .final-score { color: var(--pubg-accent); }
-.rank-3 .final-score { color: var(--pubg-accent); }
-.rank-3 {
-  background: linear-gradient(90deg, rgba(217, 119, 6, 0.15) 0%, var(--bg-row) 60%);
-  border: 1px solid #d97706; 
-}
-.rank-3 .team-title { color: var(--pubg-accent); }
 
 .medal {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
+}
+
+/* ==========================================================================
+   Eliminated state
+   ========================================================================== */
+.row-eliminated {
+  opacity: 0.4;
+  filter: grayscale(0.8);
+  pointer-events: none;
+}
+
+.row-eliminated:hover {
+  background-color: var(--bg-row);
+  border-color: var(--border-row);
+}
+
+.eliminated-card .card-name,
+.eliminated-card .card-total,
+.eliminated-card .card-rank,
+.eliminated-card .card-value,
+.eliminated-card .card-label {
+  color: var(--text-muted);
+}
+
+.eliminated-tag {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #ef4444;
+  padding: 2px 8px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Podium — animated gradients
+   ========================================================================== */
+@keyframes goldShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes silverShift {
+  0% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes bronzeShift {
+  0% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+  100% { background-position: 50% 0%; }
+}
+
+.rank-1 {
+  background-image: linear-gradient(90deg, rgba(243, 156, 18, 0.35), rgba(251, 191, 36, 0.05), rgba(255, 215, 0, 0.3), rgba(243, 156, 18, 0.05));
+  background-size: 250% 100%;
+  animation: goldShift 3s ease infinite;
+  border: 1px solid var(--pubg-accent);
+}
+.rank-1 .card-name, .rank-1 .card-total { color: var(--pubg-accent); }
+
+.rank-2 {
+  background-image: linear-gradient(120deg, rgba(192, 192, 192, 0.28), rgba(148, 163, 184, 0.05), rgba(220, 220, 230, 0.2), rgba(148, 163, 184, 0.05));
+  background-size: 250% 100%;
+  animation: silverShift 4s ease infinite;
+  border: 1px solid #94a3b8;
+}
+.rank-2 .card-name, .rank-2 .card-total { color: #c0c0c0; }
+
+.rank-3 {
+  background-image: linear-gradient(135deg, rgba(205, 127, 50, 0.28), rgba(217, 119, 6, 0.05), rgba(184, 115, 51, 0.22), rgba(217, 119, 6, 0.05));
+  background-size: 100% 250%;
+  animation: bronzeShift 5s ease infinite;
+  border: 1px solid #cd7f32;
+}
+.rank-3 .card-name, .rank-3 .card-total { color: #cd7f32; }
+
+/* ==========================================================================
+   Rank-change highlight
+   ========================================================================== */
+.row-moved {
+  animation: rankGlow 2s ease-out;
+  z-index: 2;
+}
+
+@keyframes rankGlow {
+  0% {
+    box-shadow: 0 0 25px rgba(243, 156, 18, 0.6), inset 0 0 8px rgba(243, 156, 18, 0.15);
+    border-color: var(--pubg-accent);
+  }
+  100% {
+    box-shadow: none;
+    border-color: var(--border-row);
+  }
+}
+
+.row-content {
+  width: 100%;
+}
+
+@keyframes textGlow {
+  0%, 100% { opacity: 1; letter-spacing: 2px; }
+  50% { opacity: 0.7; letter-spacing: 4px; }
+}
+
+/* ==========================================================================
+   Responsive — Mobile (single column)
+   ========================================================================== */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 16px 8px;
+  }
+
+  .leaderboard-header {
+    margin-bottom: 14px;
+  }
+
+  .leaderboard-header h1 {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .leaderboard-header::before {
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .live-indicator {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+
+  .table-container {
+    padding: 6px;
+  }
+
+  .rows-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .winner-text {
+    letter-spacing: 1.5px;
+  }
+
+  .winner-first .winner-text {
+    font-size: 0.85rem;
+  }
+
+  .winner-second .winner-text,
+  .winner-third .winner-text {
+    font-size: 0.8rem;
+  }
+
+  .room-id-value {
+    font-size: 2rem;
+    letter-spacing: 4px;
+  }
+
+  .room-id-label {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+  }
+
+  .room-id-overlay {
+    padding: 30px 12px;
+  }
+
+  .celebrate-card {
+    min-height: 100px;
+    padding: 20px 12px;
+  }
+
+  .celebrate-badge {
+    font-size: 1.8rem;
+  }
+
+  .celebrate-name {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+  }
+
+  .celebrate-points {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+
+  .celebrate-message {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
 }
